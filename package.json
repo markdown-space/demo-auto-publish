@@ -1,0 +1,24 @@
+{
+  "name": "demo-auto-publish",
+  "version": "1.0.0",
+  "description": "This project is used to demonstrate publishing to markdownspace via cli",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "markdownspace publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markdown-space/demo-auto-publish.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/markdown-space/demo-auto-publish/issues"
+  },
+  "homepage": "https://github.com/markdown-space/demo-auto-publish#readme",
+  "dependencies": {
+    "@markdownspace/cli": "^1.0.5"
+  }
+}
