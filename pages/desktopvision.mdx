@@ -1,9 +1,14 @@
 <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
 <script src="https://js.desktop.vision/three/v3.0.1/bundle.min.js"></script>
 
-# Spinning Cube Example
+# DesktopVision MDX Demo
 
-This is an MDX document demonstrating a spinning cube using Three.js.
+This is an MDX document demonstrating the use of DesktopVision in an MDX document.
+This document uses MDX to render a Three.js scene with a spinning cube.
+Then we add a DesktopVision ManagedComputer to the scene and render it.
+The ManagedComputer can be accessed via the `window.desktop` variable.
+You can even sign in and control your computer from this document!
+Go to the [DesktopVision](https://desktop.vision) to learn more.
 
 <div id="scene-container" style="width: 400px; height: 400px"></div>
 <div id="log-text" />
@@ -71,3 +76,36 @@ This is an MDX document demonstrating a spinning cube using Three.js.
         animate(); // Start the animation loop
     });
 </script>
+# Demo Auto Publish
+
+This project is used to demonstrate publishing to markdownspace via CLI.
+
+## Project Structure
+
+- `.github/workflows/deploy.yml`: Contains the GitHub Actions workflow for deploying to main branch.
+- `markdownspace.config.js`: Configuration file for markdownspace.
+- `package.json`: Contains the project metadata and dependencies.
+- `pages/`: Contains the markdown and MDX files for the project.
+
+## Setup
+
+1. Clone the repository.
+2. Run `npm install` to install the dependencies.
+3. Use `npm run publish` to publish the markdown files to markdownspace.
+
+## Pages
+
+- `added_second_doc.md`: A second document in the project.
+- `desktopvision.mdx`: An MDX document demonstrating a spinning cube using Three.js.
+
+## Deployment
+
+The project is automatically deployed to the main branch using the workflow defined in `.github/workflows/deploy.yml`.
+
+## Contributing
+
+Please read through our contributing guidelines. Included are directions for opening issues, coding standards, and notes on development.
+
+## License
+
+This project is licensed under the ISC license.
