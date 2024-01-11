@@ -1,0 +1,73 @@
+<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+<script src="https://js.desktop.vision/three/v3.0.1/bundle.min.js"></script>
+
+# Spinning Cube Example
+
+This is an MDX document demonstrating a spinning cube using Three.js.
+
+<div id="scene-container" style="width: 400px; height: 400px"></div>
+<div id="log-text" />
+<video id="test-video" autoplay muted playsinline loop style="display: none">
+    <source src="https://tekeye.uk/html/images/Joren_Falls_Izu_Jap.mp4"/>
+</video>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initialize scene, camera, and renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, 400 / 400, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(400, 400);
+        document.getElementById('scene-container').appendChild(renderer.domElement);
+
+        // Create and add cube to the scene
+        const cube = new THREE.Mesh(
+            new THREE.BoxGeometry(),
+            new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+        );
+        scene.add(cube);
+        camera.position.z = 5;
+
+        // Desktop Vision API credentials and initialization
+        const desktopVisionApiCredentials = {
+            id: '6wlqRxEgp60JXkcGkLY2',
+            key: 'bc7013db-c339-4141-92fb-f24486d47d35'
+        };
+        const dv = window.DesktopVision.loadSDK(THREE, null, null);
+        window.dv = dv;
+
+        // Desktop options configuration
+        const desktopOptions = {
+            scene, camera, 
+            sceneContainer: document.getElementById('scene-container'),
+            renderer,
+            video: document.getElementById('test-video'),
+            hideMoveIcon: false,
+            hideResizeIcon: true,
+            includeKeyboard: true,
+            hideMultiMonitor: true
+        };
+
+        // ManagedComputer setup
+        let desktop;
+        document.getElementById('test-video').addEventListener('loadedmetadata', function() {
+            desktop = new dv.ManagedComputer(desktopOptions, desktopVisionApiCredentials);
+            scene.add(desktop);
+            desktop.transparent = false;
+            desktop.position.set(0, 0, 4);
+            desktop.resetScreen();
+            window.desktop = desktop;
+            desktop.generateCode();
+        });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+
+        animate(); // Start the animation loop
+    });
+</script>
